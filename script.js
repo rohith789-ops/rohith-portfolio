@@ -11,6 +11,14 @@ menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
   menuBtn.setAttribute('aria-expanded','false');
 }));
 
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&menu.classList.contains('open')){
+    menu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.focus();
+  }
+});
+
 document.getElementById('year').textContent=new Date().getFullYear();
 
 const contactForm=document.getElementById('contactForm');

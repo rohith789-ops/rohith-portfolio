@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 const pages = ['index', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
 
 export default defineConfig({
+  base: './',
   plugins: [{
     name: 'portfolio-resume',
     apply: 'build',
