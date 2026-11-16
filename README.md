@@ -1,6 +1,6 @@
 # Rohith's Software Engineer Portfolio
 
-A responsive portfolio with separate pages for the home page, About, Skills, Projects, Experience, Education, and Contact.
+A responsive seven-page portfolio with an editorial charcoal palette, restrained lime accents, serif display typography, and separate pages for Home, About, Skills, Projects, Experience, Education, and Contact.
 
 ## Run locally
 

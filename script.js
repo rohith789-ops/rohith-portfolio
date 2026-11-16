@@ -3,6 +3,7 @@ const menu=document.getElementById('menu');
 
 const setMenuOpen=open=>{
   menu.classList.toggle('open',open);
+  menu.parentElement.classList.toggle('menu-open',open);
   menuBtn.setAttribute('aria-expanded',String(open));
   menuBtn.setAttribute('aria-label',open?'Close navigation':'Open navigation');
   menuBtn.textContent=open?'×':'☰';
@@ -55,3 +56,19 @@ backToTop.addEventListener('click',()=>{
   const behavior=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
   window.scrollTo({top:0,behavior});
 });
+
+const revealTargets=document.querySelectorAll('.hero-copy,.hero-art,.section-head,.about-main,.info-tile,.skill-card,.project,.timeline-item,.education-card,.contact');
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){
+  revealTargets.forEach(target=>target.classList.add('is-visible'));
+}else{
+  revealTargets.forEach(target=>target.classList.add('js-reveal'));
+  const revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -20px 0px'});
+  revealTargets.forEach(target=>revealObserver.observe(target));
+}
