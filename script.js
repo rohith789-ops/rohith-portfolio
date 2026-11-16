@@ -1,20 +1,23 @@
 const menuBtn=document.getElementById('menuBtn');
 const menu=document.getElementById('menu');
 
-menuBtn.addEventListener('click',()=>{
-  const open=menu.classList.toggle('open');
+const setMenuOpen=open=>{
+  menu.classList.toggle('open',open);
   menuBtn.setAttribute('aria-expanded',String(open));
-});
+  menuBtn.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  menuBtn.textContent=open?'×':'☰';
+};
+
+menuBtn.setAttribute('aria-label','Open navigation');
+menuBtn.addEventListener('click',()=>setMenuOpen(!menu.classList.contains('open')));
 
 menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
-  menu.classList.remove('open');
-  menuBtn.setAttribute('aria-expanded','false');
+  setMenuOpen(false);
 }));
 
 document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&menu.classList.contains('open')){
-    menu.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded','false');
+    setMenuOpen(false);
     menuBtn.focus();
   }
 });
@@ -35,3 +38,20 @@ if(contactForm){
     window.location.href=`mailto:saikondepati0@gmail.com?subject=${subject}&body=${body}`;
   });
 }
+
+const backToTop=document.createElement('button');
+backToTop.type='button';
+backToTop.className='back-to-top';
+backToTop.setAttribute('aria-label','Back to top');
+backToTop.textContent='↑';
+backToTop.hidden=true;
+document.body.append(backToTop);
+
+const updateBackToTop=()=>{backToTop.hidden=window.scrollY<400};
+window.addEventListener('scroll',updateBackToTop,{passive:true});
+updateBackToTop();
+
+backToTop.addEventListener('click',()=>{
+  const behavior=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
+  window.scrollTo({top:0,behavior});
+});

@@ -30,6 +30,6 @@ The Vite build uses relative asset URLs so it works when hosted under a reposito
 - Add real project repository/demo URLs to each project card when available.
 - Confirm all resume facts and certification names/dates.
 - Replace the PDF when your resume is updated.
-- Consider adding project screenshots, architecture diagrams and a favicon.
+- Consider adding project screenshots, architecture diagrams and a social preview image when available.
 
 The website intentionally does not claim unverified performance metrics, project demos or proficiency percentages.
